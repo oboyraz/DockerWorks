@@ -23,8 +23,7 @@ nginx imajının latest ve alpine tagli imajlarını sisteme çekin.
 docker image pull centos:latest 
 centos:7 ubuntu:latest ubuntu:18.04 ubuntu:20.04 alpine:latest nginx:latest nginx:alpine   
 
-# 6: ubuntu:18.04 imajına dockerhubkullaniciadiniz/alistirma:ubuntu olarak tag ekleyin ve ardından bu yeni imajı 
-docker hub'a gönderin. Alistirma repository'inizden imajı check edin. 
+# 6: ubuntu:18.04 imajına dockerhubkullaniciadiniz/alistirma:ubuntu olarak tag ekleyin ve ardından bu yeni imajı docker hub'a gönderin. Alistirma repository'inizden imajı check edin. 
 
 docker image tag ubuntu:18.04 oboyraz/alistirma:ubuntu
 docker image push oboyraz/alistirma:ubuntu
@@ -58,7 +57,7 @@ build ARG olarak RENK:sari kullanın. Kirmizi olan imajın tagi dockerhubkullani
 Sari olan imajin tagi dockerhubkullaniciadiniz/alistirma:sari olsun. 
 
 
-Docker build -t oboyraz/alistirma:kirmizi --build-arg RENK=kirmizi .
+docker build -t oboyraz/alistirma:kirmizi --build-arg RENK=kirmizi .
 docker build -t oboyraz/alistirma:sari --build-arg RENK=sari .
 
 # 9: dockerhubkullaniciadiniz/alistirma:kirmizi imajını kullanarak bir container yaratın. Detach olsun.
