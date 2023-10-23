@@ -43,15 +43,25 @@ zaman aşımı süresi de 30 saniye olsun. Deneme sayısı 3 olsun.
 
 
 FROM nginx:latest
+
 LABEL maintainer="Omer Boyraz oboyraz@sakarya.edu.tr"
+
 ENV KULLANICI="Omer"
+
 ARG RENK
+
 RUN apt-get update && apt-get install curl -y && apt-get install htop -y && apt-get install wget -y
+
 WORKDIR /gecici
+
 ADD https://wordpress.org/latest.tar.gz .
+
 WORKDIR /usr/share/nginx/html
+
 COPY html/${RENK}/ .
+
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD curl -f http://localhost/ || exit 1
+
 CMD ["./script.sh"]
 
 
@@ -90,13 +100,20 @@ docker container run -d -p 8080:80 --name sari --env KULLANICI=Deneme oboyraz/al
 
 
 FROM mcr.microsoft.com/java/jdk:8-zulu-alpine AS birinci
+
 WORKDIR /usr/src/uygulama
+
 COPY /source .
+
 RUN javac uygulama.java
 
+
 FROM mcr.microsoft.com/java/jre:8-zulu-alpine
+
 WORKDIR /uygulama
+
 COPY --from=birinci /usr/src/uygulama .
+
 CMD ["java", "uygulama"]
 
 
